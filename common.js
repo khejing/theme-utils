@@ -1,6 +1,8 @@
 var config = require('./config'),
     moment = require('moment');
 
+moment.locale('zh-cn');
+
 function getFormattedDate(date, date_format) {
     date_format = date_format || config.date_format;
 
