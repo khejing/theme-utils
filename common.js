@@ -33,6 +33,30 @@ function humanizeDuration(duration) {
     return ( days > 1 ? days + ' days' : days + ' day' );
 }
 
+function humanizeDurationChinese(duration) {
+   var days,
+       months = duration.months(),
+       years = duration.years(),
+       month_str = '个月',
+       year_str = '年';
+
+    if ( months && years ) {
+        return years + year_str + months + month_str;
+    }
+
+    if ( months ) {
+        return months + month_str;
+    }
+
+    if ( years ) {
+        return years + year_str;
+    }
+
+    days = duration.days();
+
+    return ( days > 1 ? days + ' days' : days + ' day' );
+}
+
 function getDuration(start_date, end_date, humanize) {
     var duration;
 
@@ -40,7 +64,7 @@ function getDuration(start_date, end_date, humanize) {
     end_date = new Date(end_date);
     duration = moment.duration(end_date.getTime() - start_date.getTime());
 
-    return (humanize ? humanizeDuration(duration) : duration);
+    return (humanize ? humanizeDurationChinese(duration) : duration);
 }
 
 module.exports = {
